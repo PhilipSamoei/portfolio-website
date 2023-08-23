@@ -1,0 +1,30 @@
+h1{
+    color: black;
+}
+.nav-bar {
+    background-color: #333;
+    color: white;
+  }
+  
+  .nav-bar nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  .nav-bar h1 {
+    font-size: 1.5rem;
+    color: aqua;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    margin-right: 1rem;
+    color: white;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-links a:hover {
+    color: #66b2ff;
+  }
