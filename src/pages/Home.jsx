@@ -4,7 +4,7 @@ function Home() {
   return (
     <div>
       <div>
-          <h1 className='text-2xl'> Hello, I am Philip</h1>
+          <h1 className='text-2xl'> Hello, I am Full Stack Engineer</h1>
       </div>
 
     </div>

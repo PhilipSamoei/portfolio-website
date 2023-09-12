@@ -1,62 +1,52 @@
-import React from 'react';
+import React ,{ useRef}from 'react';
 import { useForm } from 'react-hook-form';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import emailjs from '@emailjs/browser';
 import '../css/Contact.css';
+import Swal from 'sweetalert2';
+
+
+const SERVICE_ID = "service_jsznbcj";
+const TEMPLATE_ID = "12345678";
+const PUBLIC_KEY = "E1ZeG4ClRU_5Ud6PG";
 
 
 function ContactMe() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset
-  } = useForm();
-
-  const onSubmit = (data) => {
-    console.log(data);
-    alert('Form submitted');
-    reset();
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, e.target, PUBLIC_KEY)
+      .then((result) => {
+        console.log(result.text);
+        Swal.fire({
+          icon: 'success',
+          title: 'Message Sent Successfully'
+        })
+      }, (error) => {
+        console.log(error.text);
+        Swal.fire({
+          icon: 'error',
+          title: 'Ooops, something went wrong',
+          text: error.text,
+        })
+      });
+    e.target.reset()
   };
+
 
 
   return (
     <div className="grid grid-cols-2 gap-10">
       <div >
       <h1 className="text">Let's get in touch</h1>
-      <form onSubmit={handleSubmit(onSubmit)} className="form-container">
-          <input type="text" {...register('name',{
-            required:{
-                value: true,
-                message: 'Please enter your name'
-            },
-
-          })} placeholder="Name" className="form-input" />
-          <p className="error"> {errors.name?.message}</p>
-          <input type="email" {...register('email',{
-            required:{
-                value: true,
-                message: 'Please enter your email'
-            },
-          })} placeholder="Email" className="form-input" />
-          <p className="error"> {errors.email?.message}</p>
-          <input type="tel" {...register('phone',{
-          required:{
-                value: true,
-                message: 'Please enter your phone number'
-          }},
+      <form onSubmit={handleOnSubmit} className="form-container" >
+          <input type="text" name="name" placeholder="Name" className="form-input" />
+         
+          <input type="email" name="email"  placeholder="Email" className="form-input" />
           
-          )} placeholder="Phone" className="form-input" />
-          <p className="error"> {errors.phone?.message}</p>
-          <textarea {...register('message',
-          {
-            required:{
-                value: true,
-                message: 'Please enter your message'
-            },
-          })} placeholder="Message" className="form-textarea" />
-          <p className="error"> {errors.message?.message}</p>
+          
+          <textarea  name="message" placeholder="Message" className="form-textarea" />
+         
 
-         <button  className="submit"> Submit</button> 
+         <button  className="submit" value="send"> Submit</button> 
          </form>
       </div>
             

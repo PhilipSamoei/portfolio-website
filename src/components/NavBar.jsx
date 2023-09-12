@@ -11,13 +11,31 @@ function NavBar() {
             Philip <span>Samoei</span>
           </h1>
         </div>
-        <div className="nav-links">
+        <ul className="flex">
+        <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="/#about">About me</a>
+          </li>
+          <li>
+            <a href="/#projects">Projects</a>
+          </li>
+          <li>
+            <a href="/#services">Services</a>
+          </li>
+          <li>
+            <a href="/#contact">Contact</a>
+          </li>
+         
+        </ul>
+        {/* <div className="nav-links">
           <Link to="/">Home</Link>
-          <Link to="/about-me">About Me</Link>
-          <Link to="/services">Services</Link>
-          <Link to="/projects">Projects</Link>
+          <Link to="/#about-me">About Me</Link>
+          <Link to="/#services">Services</Link>
+          <Link to="/#projects">Projects</Link>
           <Link to="/contact">Contact Me</Link>
-        </div>
+        </div> */}
       </nav>
     </div>
   );
